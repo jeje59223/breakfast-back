@@ -20,9 +20,9 @@ export async function getUserById(id: string): Promise<User | null> {
         const database = client.db('TEST')
         const users = database.collection('Users')
         const query = { _id: new ObjectId(id) }
-        const user = await users.findOne<User>(query);  // Typage direct ici
+        const user = await users.findOne<User>(query);
 
-        return user || null;  // Retourne directement l'utilisateur ou null s'il n'existe pas
+        return user || null;
     } catch (err) {
         console.log(err)
         return null;
