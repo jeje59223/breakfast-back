@@ -5,12 +5,12 @@ import * as UsersService from '../../services/users/users.service';
 const router = express.Router();
 
 router.get('', async (req: Request, res: Response) => {
-  res.send(await UsersService.getUsersByCurl())
-})
+  res.send(await UsersService.getUsersByCurl());
+});
 
 router.get('/:ldap', async (req: Request, res: Response) => {
-  res.send(await UsersService.getUserByLdap(req.params.ldap))
-})
+  res.send(await UsersService.getUserByLdap(req.params.ldap));
+});
 
 router.post('/add-user', async (req: Request, res: Response) => {
   try {
@@ -38,6 +38,6 @@ router.post('/delete-user', async (req: Request, res: Response) => {
     console.error('Erreur lors de la suppression de l\'utilisateur :', error);
     res.status(500).json({ message: 'Erreur lors de la suppression de l\'utilisateur', error });
   }
-})
+});
 
 export default router;
