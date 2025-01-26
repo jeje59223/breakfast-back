@@ -1,6 +1,9 @@
 import express from "express";
 import dotenv from 'dotenv';
 import morgan from 'morgan';
+import swaggerJsdoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
+import swaggerConfig from "./swagger.config";
 import { MongoClient } from "mongodb";
 import usersRouter from './src/routes/users/users.route'
 
@@ -14,6 +17,10 @@ const PORT = process.env.PORT;
 app.use(morgan('dev'));
 app.use(express.static('public'));
 app.use(express.json());
+// @ts-ignore
+const swaggerDocs = swaggerJsdoc(swaggerConfig);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
 app.get("/", (req, res) => {
     res.send("Hello, TypeScript avec Express!");
 });
